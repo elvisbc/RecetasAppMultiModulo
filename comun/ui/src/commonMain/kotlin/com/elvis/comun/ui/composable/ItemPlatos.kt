@@ -1,6 +1,5 @@
-package com.elvis.receta.ui.inicio.composable
+package com.elvis.comun.ui.composable
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

@@ -54,5 +54,14 @@ class RecetaRepositorioImp(
         }
     }
 
+    override suspend fun obtenerPlatosPorBusqueda(busqueda: String): Result<List<Plato>> {
+        val resultado = apiServicio.obtenerPlatosBuscados(busqueda)
+        return if (resultado.isSuccess){
+            Result.success(resultado.getOrThrow().platosDto.aDominioListaPlatos())
+        }else{
+            Result.failure(resultado.exceptionOrNull()!!)
+        }
+    }
+
 
 }

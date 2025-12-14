@@ -1,4 +1,4 @@
-package com.elvis.receta.navegacion
+package com.elvis.receta.ui.inicio.navegacion
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable

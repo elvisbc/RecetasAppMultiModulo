@@ -45,4 +45,16 @@ class ApiServicio(
             Result.failure(e)
         }
     }
+    suspend fun obtenerPlatosBuscados(busqueda: String): Result<PlatosDto>{
+        return try {
+            val respuesta = httpClient
+                .get("v1/1/search.php"){
+                    parameter("s",busqueda)
+                }
+                .body<PlatosDto>()
+            Result.success(respuesta)
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+    }
 }

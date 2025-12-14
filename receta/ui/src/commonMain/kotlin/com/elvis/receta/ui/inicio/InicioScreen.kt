@@ -10,8 +10,7 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.elvis.comun.navegacion.navegarA
 import com.elvis.comun.navegacion.retroceder
-import com.elvis.receta.navegacion.RutasInicio
-import com.elvis.receta.navegacion.RutasInicio.*
+import com.elvis.receta.ui.inicio.navegacion.RutasInicio.*
 import com.elvis.receta.ui.inicio.screens.CategoriasScreen
 import com.elvis.receta.ui.inicio.screens.PlatoInformacionScreen
 import com.elvis.receta.ui.inicio.screens.PlatosScreen
@@ -27,6 +26,7 @@ fun InicioScreen(){
                 polymorphic(NavKey::class){
                     subclass(subclass = Categorias::class, serializer = Categorias.serializer())
                     subclass(subclass = ListaPlatos::class, serializer = ListaPlatos.serializer())
+                    subclass(subclass = PlatoInformacion::class, serializer = PlatoInformacion.serializer())
 
                 }
             }

@@ -83,6 +83,7 @@ fun App() {
                 Box(
                     modifier = Modifier
                         .padding(pv)
+                        .padding(horizontal = 10.dp)
                         .fillMaxSize()
                 ){
                     NavHost(
