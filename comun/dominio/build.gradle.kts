@@ -54,7 +54,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.elvis.dominio"
+    namespace = "com.elvis.comun.dominio"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -86,7 +86,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.elvis.dominio"
+            packageName = "com.elvis.comun.dominio"
             packageVersion = "1.0.0"
         }
     }

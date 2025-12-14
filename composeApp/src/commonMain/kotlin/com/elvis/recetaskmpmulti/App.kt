@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
@@ -22,7 +24,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.elvis.recetaskmpmulti.navegacion.MenuNavGraph
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import recetaskmpmulti.composeapp.generated.resources.Res
+import recetaskmpmulti.composeapp.generated.resources.ic_menu
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,8 +65,18 @@ fun App() {
             Scaffold(
                 topBar = {
                     TopAppBar(
-                        title = {},
-                        navigationIcon = {}
+                        title = {
+                        },
+                        navigationIcon = {
+                            IconButton(
+                                onClick = { scope.launch { estadoDrawer.open() } }
+                            ){
+                               Icon(
+                                   painter = painterResource(Res.drawable.ic_menu),
+                                   contentDescription = null
+                               )
+                            }
+                        }
                     )
                 }
             ) { pv ->

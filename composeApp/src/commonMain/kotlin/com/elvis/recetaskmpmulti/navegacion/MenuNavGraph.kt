@@ -5,7 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.elvis.receta.ui.categorias.CategoriasScreen
+import com.elvis.comun.navegacion.BaseNavGraph
+import com.elvis.receta.ui.inicio.InicioScreen
 
 object MenuNavGraph: BaseNavGraph {
     override val rutaGraph: String = "menuGraph"
@@ -37,7 +38,7 @@ object MenuNavGraph: BaseNavGraph {
             composable(
                 route = Destino.Inicio.ruta
             ) {
-                CategoriasScreen()
+                InicioScreen()
             }
 
         }

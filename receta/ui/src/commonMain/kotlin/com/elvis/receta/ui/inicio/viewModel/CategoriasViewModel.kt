@@ -1,8 +1,9 @@
-package com.elvis.receta.ui.categorias
+package com.elvis.receta.ui.inicio.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elvis.receta.dominio.casoUso.ObtenerCategoriasRecetaCasoUso
+import com.elvis.receta.ui.inicio.estados.CategoriasEstado
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

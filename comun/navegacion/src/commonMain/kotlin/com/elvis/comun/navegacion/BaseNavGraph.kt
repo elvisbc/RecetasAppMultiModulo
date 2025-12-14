@@ -1,4 +1,4 @@
-package com.elvis.recetaskmpmulti.navegacion
+package com.elvis.comun.navegacion
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder

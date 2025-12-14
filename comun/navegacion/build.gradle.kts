@@ -3,11 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
-    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -16,7 +15,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -26,24 +25,15 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     jvm()
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-
-            implementation(projects.comun.navegacion)
-
-            implementation(projects.coreNetwork)
-
-            implementation(projects.receta.data)
-            implementation(projects.receta.dominio)
-            implementation(projects.receta.ui)
-
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -54,13 +44,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             //navegacion
             implementation(libs.navigation.compose)
-            //implementation(libs.jetbrains.navigation3.ui)
-            //implementation(libs.jetbrains.lifecycle.viewModel.nav3)
-            //koin
-            implementation(libs.koin.core)
-            //serialization
-            implementation(libs.kotlinx.serialization.json)
-
+            implementation(libs.jetbrains.navigation3.ui)
+            implementation(libs.jetbrains.lifecycle.viewModel.nav3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -73,15 +58,12 @@ kotlin {
 }
 
 android {
-    namespace = "com.elvis.recetaskmpmulti"
+    namespace = "com.elvis.comun.navegacion"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.elvis.recetaskmpmulti"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
     }
     packaging {
         resources {
@@ -105,11 +87,10 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.elvis.recetaskmpmulti.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.elvis.recetaskmpmulti"
+            packageName = "com.elvis.comun.navegacion"
             packageVersion = "1.0.0"
         }
     }

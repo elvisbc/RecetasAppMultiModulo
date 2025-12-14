@@ -36,6 +36,7 @@ include(":composeApp")
 include(":core-network")
 
 include(":comun:dominio")
+include(":comun:navegacion")
 
 include(":receta:data")
 include(":receta:dominio")

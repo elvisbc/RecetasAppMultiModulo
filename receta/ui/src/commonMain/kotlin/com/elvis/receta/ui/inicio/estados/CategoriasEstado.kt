@@ -1,4 +1,4 @@
-package com.elvis.receta.ui.categorias
+package com.elvis.receta.ui.inicio.estados
 
 import com.elvis.receta.dominio.model.RecetaCategoria
 

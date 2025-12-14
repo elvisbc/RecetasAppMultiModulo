@@ -1,6 +1,7 @@
-package com.elvis.receta.ui.categorias.composable
+package com.elvis.receta.ui.inicio.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,12 +24,16 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ItemCategoria(
-    recetaCategoria: RecetaCategoria
+    recetaCategoria: RecetaCategoria,
+    alSeleccionar: (String) -> Unit
 ){
     Card(
         modifier = Modifier
             .padding(5.dp)
-            .aspectRatio(1f),
+            .aspectRatio(1f)
+            .clickable(
+                onClick = { alSeleccionar(recetaCategoria.nombreCategoria) }
+            ),
         shape = RoundedCornerShape(10.dp)
     ) {
         Box(

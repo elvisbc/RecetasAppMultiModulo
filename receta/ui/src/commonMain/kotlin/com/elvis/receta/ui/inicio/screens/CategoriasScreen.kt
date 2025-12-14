@@ -1,11 +1,10 @@
-package com.elvis.receta.ui.categorias
+package com.elvis.receta.ui.inicio.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -19,11 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.elvis.receta.ui.categorias.composable.ItemCategoria
+import com.elvis.receta.ui.inicio.viewModel.CategoriasViewModel
+import com.elvis.receta.ui.inicio.composable.ItemCategoria
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun CategoriasScreen(){
+fun CategoriasScreen(
+    alSeleccionarCategoria: (String) -> Unit
+){
 
     val viewModel = koinViewModel<CategoriasViewModel>()
     val estadoCategorias = viewModel.estadoCategorias.collectAsStateWithLifecycle()
@@ -69,7 +71,8 @@ fun CategoriasScreen(){
                 ) {
                     items(categorias){ categoria ->
                         ItemCategoria(
-                            recetaCategoria = categoria
+                            recetaCategoria = categoria,
+                            alSeleccionar = alSeleccionarCategoria
                         )
                     }
 

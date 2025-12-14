@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -35,6 +36,9 @@ kotlin {
         }
         commonMain.dependencies {
 
+
+            implementation(projects.comun.navegacion)
+
             implementation(projects.receta.dominio)
 
             implementation(compose.runtime)
@@ -49,6 +53,11 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
             //coil
             implementation(libs.bundles.coil)
+            //navegacion
+            implementation(libs.jetbrains.navigation3.ui)
+            implementation(libs.jetbrains.lifecycle.viewModel.nav3)
+            //serialization
+            implementation(libs.kotlinx.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
