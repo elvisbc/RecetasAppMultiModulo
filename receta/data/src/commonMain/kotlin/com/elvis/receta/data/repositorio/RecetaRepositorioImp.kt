@@ -1,5 +1,8 @@
 package com.elvis.receta.data.repositorio
 
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToList
+import com.elvis.coreBaseDatos.AppBaseDatos
 import com.elvis.coreNetwork.apiServicio.ApiServicio
 import com.elvis.receta.data.mappers.aDominioListaPlatoInformacion
 import com.elvis.receta.data.mappers.aDominioListaPlatos
@@ -10,10 +13,15 @@ import com.elvis.receta.dominio.model.Plato
 import com.elvis.receta.dominio.model.PlatoInformacion
 import com.elvis.receta.dominio.model.RecetaCategoria
 import com.elvis.receta.dominio.repositorio.RecetaRepositorio
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import recetaskmpmulti.receta.data.generated.resources.Res
 
 class RecetaRepositorioImp(
-    private val apiServicio: ApiServicio
+    private val apiServicio: ApiServicio,
+    private val appBaseDatos: AppBaseDatos
 ): RecetaRepositorio {
     override suspend fun obtenerCategoriasReceta(): Result<List<RecetaCategoria>> {
         val resultado = apiServicio.obtenerCategoriasRecetas()
@@ -61,6 +69,39 @@ class RecetaRepositorioImp(
         }else{
             Result.failure(resultado.exceptionOrNull()!!)
         }
+    }
+
+    override fun obtenerPlatosFavoritos(): Flow<List<PlatoInformacion>> {
+        return appBaseDatos.recetasQueries
+            .obtener()
+            .asFlow()
+            .mapToList(Dispatchers.IO)
+            .map {
+                it.map { pi ->
+                    PlatoInformacion(
+                        idPlato = pi.ID,
+                        nombre = pi.NOMBRE,
+                        categoria = pi.CATEGORIA,
+                        instruccion = pi.INSTRUCCION,
+                        imagen = pi.IMAGEN,
+                        video = pi.VIDEO,
+                        ingredientes = emptyList(),
+                    )
+
+                }
+            }
+    }
+
+    override suspend fun agregarPlatoFavorito(platoInformacion: PlatoInformacion) {
+        appBaseDatos.recetasQueries.insertar(
+            ID = platoInformacion.idPlato,
+            NOMBRE = platoInformacion.nombre,
+            CATEGORIA = platoInformacion.categoria,
+            INSTRUCCION = platoInformacion.instruccion,
+            IMAGEN = platoInformacion.imagen,
+            VIDEO = platoInformacion.video,
+            INGREDIENTES = ""
+        )
     }
 
 

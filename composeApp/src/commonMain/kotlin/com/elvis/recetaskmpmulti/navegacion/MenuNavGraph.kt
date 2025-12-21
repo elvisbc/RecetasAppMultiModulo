@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.elvis.comun.navegacion.BaseNavGraph
 import com.elvis.receta.ui.buscar.BuscarScreen
+import com.elvis.receta.ui.favoritos.FavoritosScreen
 import com.elvis.receta.ui.inicio.InicioScreen
 
 object MenuNavGraph: BaseNavGraph {
@@ -45,6 +46,11 @@ object MenuNavGraph: BaseNavGraph {
                 route = Destino.Buscar.ruta
             ) {
                 BuscarScreen()
+            }
+            composable(
+                route = Destino.RecetasGuardadas.ruta
+            ) {
+                FavoritosScreen()
             }
 
         }

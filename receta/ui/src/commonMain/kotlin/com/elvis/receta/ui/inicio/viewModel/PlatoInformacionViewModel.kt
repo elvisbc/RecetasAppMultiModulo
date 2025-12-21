@@ -2,7 +2,9 @@ package com.elvis.receta.ui.inicio.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.elvis.receta.dominio.casoUso.AgregarPlatoFavoritoCasoUso
 import com.elvis.receta.dominio.casoUso.ObtenerInformacionPlatoCasoUso
+import com.elvis.receta.dominio.model.PlatoInformacion
 import com.elvis.receta.ui.inicio.estados.PlatoInformacionEstado
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,9 +13,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class PlatoInformacionViewModel(
-    private val obtenerInformacionPlatoCasoUso: ObtenerInformacionPlatoCasoUso
+    private val obtenerInformacionPlatoCasoUso: ObtenerInformacionPlatoCasoUso,
+    private val agregarPlatoFavoritoCasoUso: AgregarPlatoFavoritoCasoUso
 ): ViewModel() {
     private val _estadoReceta = MutableStateFlow(PlatoInformacionEstado())
     val estadoReceta: StateFlow<PlatoInformacionEstado> = _estadoReceta.asStateFlow()
@@ -29,4 +33,11 @@ class PlatoInformacionViewModel(
                     _estadoReceta.update { PlatoInformacionEstado(error = error.message.toString()) }
                 }
             }.launchIn(viewModelScope)
+
+    fun agregarPlatoFavorito(platoInformacion: PlatoInformacion){
+        viewModelScope.launch {
+            agregarPlatoFavoritoCasoUso.invoke(platoInformacion)
+        }
+
+    }
 }

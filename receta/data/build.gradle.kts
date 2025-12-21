@@ -35,6 +35,8 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.coreNetwork)
+            implementation(projects.coreBaseDatos)
+
             implementation(projects.receta.dominio)
 
             implementation(compose.runtime)

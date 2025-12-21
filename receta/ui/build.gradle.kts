@@ -59,6 +59,8 @@ kotlin {
             implementation(libs.jetbrains.lifecycle.viewModel.nav3)
             //serialization
             implementation(libs.kotlinx.serialization.json)
+
+            implementation(compose.materialIconsExtended)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

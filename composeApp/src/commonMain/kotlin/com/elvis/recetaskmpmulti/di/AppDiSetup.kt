@@ -1,5 +1,6 @@
 package com.elvis.recetaskmpmulti.di
 
+import com.elvis.coreBaseDatos.di.obtenerModuloCoreBaseDatos
 import com.elvis.coreNetwork.di.obtenerModuloCoreNetwork
 import com.elvis.receta.data.di.obtenerModuloRecetaData
 import com.elvis.receta.dominio.di.obtenerModuloRecetaDominio
@@ -13,6 +14,7 @@ fun initKoin(koinApplication: ((KoinApplication) -> Unit) ? = null){
         modules(
             modules = listOf(
                 obtenerModuloCoreNetwork(),
+                obtenerModuloCoreBaseDatos(),
                 obtenerModuloRecetaData(),
                 obtenerModuloRecetaDominio(),
                 obtenerModuloRecetaUI()
