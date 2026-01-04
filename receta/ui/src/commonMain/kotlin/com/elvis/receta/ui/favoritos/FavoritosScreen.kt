@@ -6,6 +6,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.elvis.comun.navegacion.navegarA
 import com.elvis.comun.navegacion.retroceder
 import com.elvis.receta.ui.favoritos.navegacion.RutasFavorito
 import com.elvis.receta.ui.favoritos.screens.PlatoInformacionFavoritoScreen
@@ -43,11 +44,11 @@ fun FavoritosScreen(){
                 PlatosFavoritosScreen(
                     viewModel = viewModel
                 ){
-
+                    backStack.navegarA(RutasFavorito.PlatoInformacionFavorito(it))
                 }
             }
             entry<RutasFavorito.PlatoInformacionFavorito>{
-                PlatoInformacionFavoritoScreen()
+                PlatoInformacionFavoritoScreen(it.platoId)
             }
         }
     )

@@ -1,8 +1,10 @@
 package com.elvis.receta.dominio.di
 
 import com.elvis.receta.dominio.casoUso.AgregarPlatoFavoritoCasoUso
+import com.elvis.receta.dominio.casoUso.EliminarPlatoFavoritoCasoUso
 import com.elvis.receta.dominio.casoUso.ObtenerCategoriasRecetaCasoUso
 import com.elvis.receta.dominio.casoUso.ObtenerInformacionPlatoCasoUso
+import com.elvis.receta.dominio.casoUso.ObtenerInformacionPlatoLocalCasoUso
 import com.elvis.receta.dominio.casoUso.ObtenerPlatosBuscadosCasoUso
 import com.elvis.receta.dominio.casoUso.ObtenerPlatosFavoritosCasoUso
 import com.elvis.receta.dominio.casoUso.ObtenerPlatosPorCategoriaCasoUso
@@ -17,4 +19,6 @@ fun obtenerModuloRecetaDominio() = module {
 
     factory { ObtenerPlatosFavoritosCasoUso(recetaRepositorio =  get()) }
     factory { AgregarPlatoFavoritoCasoUso(recetaRepositorio =  get()) }
+    factory { ObtenerInformacionPlatoLocalCasoUso(recetaRepositorio = get()) }
+    factory { EliminarPlatoFavoritoCasoUso(recetaRepositorio = get()) }
 }

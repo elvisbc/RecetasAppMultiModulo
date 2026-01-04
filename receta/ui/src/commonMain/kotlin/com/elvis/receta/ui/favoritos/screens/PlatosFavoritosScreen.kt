@@ -20,7 +20,7 @@ import com.elvis.receta.ui.favoritos.viewModel.FavoritosViewModel
 @Composable
 fun PlatosFavoritosScreen(
     viewModel: FavoritosViewModel,
-    alSeleccionar: () -> Unit
+    alSeleccionar: (String) -> Unit
 ){
     val favoritos = viewModel.favoritos.collectAsStateWithLifecycle()
     Column(
@@ -40,7 +40,9 @@ fun PlatosFavoritosScreen(
                 items(favoritos.value){ favorito ->
                     ItemPlatoFavorito(
                         platoInformacion = favorito
-                    )
+                    ){
+                        alSeleccionar(favorito.idPlato)
+                    }
 
                 }
             }

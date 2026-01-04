@@ -2,6 +2,7 @@ package com.elvis.receta.ui.di
 
 import com.elvis.receta.ui.buscar.viewModel.BusquedaPlatoViewModel
 import com.elvis.receta.ui.favoritos.viewModel.FavoritosViewModel
+import com.elvis.receta.ui.favoritos.viewModel.PlatoInformacionFavoritoViewModel
 import com.elvis.receta.ui.inicio.viewModel.CategoriasViewModel
 import com.elvis.receta.ui.inicio.viewModel.PlatoInformacionViewModel
 import com.elvis.receta.ui.inicio.viewModel.PlatosViewModel
@@ -35,6 +36,12 @@ fun obtenerModuloRecetaUI() = module {
         FavoritosViewModel(
             obtenerPlatosFavoritosCasoUso = get(),
             agregarPlatoFavoritoCasoUso = get()
+        )
+    }
+    viewModel {
+        PlatoInformacionFavoritoViewModel(
+            obtenerInformacionPlatoLocalCasoUso = get(),
+            eliminarPlatoFavoritoCasoUso = get()
         )
     }
 }

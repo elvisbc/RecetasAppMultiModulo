@@ -15,5 +15,9 @@ VALUES (?,?,?,?,?,?,?);
 obtener:
 SELECT * FROM RECETA;
 
+obtenerPorId:
+SELECT * FROM RECETA WHERE ID = ?;
+
+
 eliminar:
 DELETE FROM RECETA WHERE ID = ?;

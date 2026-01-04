@@ -25,7 +25,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ItemPlatoFavorito(
-    platoInformacion: PlatoInformacion
+    platoInformacion: PlatoInformacion,
+    alSeleccionar: (String) -> Unit
 ){
     Column(
         modifier = Modifier
@@ -34,7 +35,10 @@ fun ItemPlatoFavorito(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Card(
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(10.dp),
+            onClick = {
+                alSeleccionar(platoInformacion.idPlato)
+            }
         ){
 
             Box(

@@ -2,6 +2,7 @@ package com.elvis.receta.data.repositorio
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
+import app.cash.sqldelight.coroutines.mapToOne
 import com.elvis.coreBaseDatos.AppBaseDatos
 import com.elvis.coreNetwork.apiServicio.ApiServicio
 import com.elvis.receta.data.mappers.aDominioListaPlatoInformacion
@@ -16,6 +17,7 @@ import com.elvis.receta.dominio.repositorio.RecetaRepositorio
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import recetaskmpmulti.receta.data.generated.resources.Res
 
@@ -62,6 +64,32 @@ class RecetaRepositorioImp(
         }
     }
 
+    override suspend fun obtenerRecetaPlatoLocal(idPlato: String): Result<PlatoInformacion> {
+        return try {
+            val res = appBaseDatos.recetasQueries
+                .obtenerPorId(idPlato)
+                .asFlow()
+                .mapToOne(Dispatchers.IO)
+                .map { pi ->
+                    PlatoInformacion(
+                        idPlato = pi.ID,
+                        nombre = pi.NOMBRE,
+                        categoria = pi.CATEGORIA,
+                        instruccion = pi.INSTRUCCION,
+                        imagen = pi.IMAGEN,
+                        video = pi.VIDEO,
+                        ingredientes = emptyList(),
+                    )
+                }
+                .first()
+
+            Result.success(res)
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+
+    }
+
     override suspend fun obtenerPlatosPorBusqueda(busqueda: String): Result<List<Plato>> {
         val resultado = apiServicio.obtenerPlatosBuscados(busqueda)
         return if (resultado.isSuccess){
@@ -102,6 +130,10 @@ class RecetaRepositorioImp(
             VIDEO = platoInformacion.video,
             INGREDIENTES = ""
         )
+    }
+
+    override suspend fun eliminarPlatoFavorito(idPlato: String) {
+        appBaseDatos.recetasQueries.eliminar(idPlato)
     }
 
 
