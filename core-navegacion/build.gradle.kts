@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
@@ -33,41 +33,12 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            //sqldelight
-            implementation(libs.sql.delight.android)
         }
         commonMain.dependencies {
-
-            implementation(projects.comun.navegacion)
-
-            implementation(projects.coreNetwork)
-            implementation(projects.coreBaseDatos)
-            implementation(projects.coreNavegacion)
-
-            implementation(projects.receta.data)
-            implementation(projects.receta.dominio)
-            implementation(projects.receta.ui)
-
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            implementation(libs.androidx.lifecycle.runtimeCompose)
-            //navegacion
-            implementation(libs.navigation.compose)
-            //implementation(libs.jetbrains.navigation3.ui)
-            //implementation(libs.jetbrains.lifecycle.viewModel.nav3)
             //koin
             implementation(libs.koin.core)
             //serialization
             implementation(libs.kotlinx.serialization.json)
-            //sqldelight
-            implementation(libs.sql.delight.common)
-            api(libs.sql.delight.common.coroutines)
-
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -75,24 +46,23 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-
-            //sqldelight
-            implementation(libs.sql.delight.common.desktop)
-
+            //ktor desktop
+            implementation(libs.ktor.client.cio)
+        }
+        iosMain.dependencies {
+            //ktor ios
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
 
 android {
-    namespace = "com.elvis.recetaskmpmulti"
+    namespace = "com.elvis.coreNavegacion"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.elvis.recetaskmpmulti"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
     }
     packaging {
         resources {
@@ -116,11 +86,10 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.elvis.recetaskmpmulti.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.elvis.recetaskmpmulti"
+            packageName = "com.elvis.coreNavegacion"
             packageVersion = "1.0.0"
         }
     }

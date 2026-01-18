@@ -33,8 +33,10 @@ plugins {
 }
 
 include(":composeApp")
+
 include(":core-network")
 include(":core-baseDatos")
+include(":core-navegacion")
 
 include(":comun:dominio")
 include(":comun:navegacion")

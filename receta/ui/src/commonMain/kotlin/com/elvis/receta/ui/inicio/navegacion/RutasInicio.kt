@@ -1,16 +1,13 @@
 package com.elvis.receta.ui.inicio.navegacion
 
-import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface RutasInicio: NavKey {
+sealed interface RutasInicio {
     @Serializable
-    data object Categorias: RutasInicio, NavKey
+    data object Categorias: RutasInicio
     @Serializable
-    data class ListaPlatos(val categoria: String): RutasInicio, NavKey
+    data class ListaPlatos(val categoria: String): RutasInicio
     @Serializable
-    data class PlatoInformacion(val platoId: String): RutasInicio, NavKey
-    @Serializable
-    data object Error: RutasInicio, NavKey
+    data class PlatoInformacion(val platoId: String): RutasInicio
 }

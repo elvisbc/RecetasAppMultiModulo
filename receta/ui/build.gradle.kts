@@ -37,6 +37,8 @@ kotlin {
         commonMain.dependencies {
 
 
+            implementation(projects.coreNavegacion)
+
             implementation(projects.comun.navegacion)
             implementation(projects.comun.ui)
 
@@ -55,8 +57,10 @@ kotlin {
             //coil
             implementation(libs.bundles.coil)
             //navegacion
-            implementation(libs.jetbrains.navigation3.ui)
-            implementation(libs.jetbrains.lifecycle.viewModel.nav3)
+            //implementation(libs.jetbrains.navigation3.ui)
+            //implementation(libs.jetbrains.lifecycle.viewModel.nav3)
+            implementation(libs.navigation.compose)
+
             //serialization
             implementation(libs.kotlinx.serialization.json)
 
