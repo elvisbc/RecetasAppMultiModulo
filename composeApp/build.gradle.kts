@@ -67,6 +67,8 @@ kotlin {
             //sqldelight
             implementation(libs.sql.delight.common)
             api(libs.sql.delight.common.coroutines)
+            //iconos
+            implementation(compose.materialIconsExtended)
 
         }
         commonTest.dependencies {

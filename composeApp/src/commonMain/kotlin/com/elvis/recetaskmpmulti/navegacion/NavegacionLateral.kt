@@ -3,6 +3,8 @@ package com.elvis.recetaskmpmulti.navegacion
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -20,7 +22,6 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import recetaskmpmulti.composeapp.generated.resources.Res
-import recetaskmpmulti.composeapp.generated.resources.ic_menu
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,7 +52,7 @@ fun NavegacionLateral(){
                             onClick = { scope.launch { estadoDrawer.open() } }
                         ){
                             Icon(
-                                painter = painterResource(Res.drawable.ic_menu),
+                                imageVector = Icons.Default.Menu,
                                 contentDescription = null
                             )
                         }

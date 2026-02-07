@@ -41,6 +41,7 @@ include(":core-navegacion")
 include(":comun:dominio")
 include(":comun:navegacion")
 include(":comun:ui")
+include(":comun:recursos")
 
 include(":receta:data")
 include(":receta:dominio")
