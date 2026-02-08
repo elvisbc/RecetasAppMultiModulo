@@ -33,6 +33,7 @@ plugins {
 }
 
 include(":composeApp")
+include(":androidApp")
 
 include(":core-network")
 include(":core-baseDatos")

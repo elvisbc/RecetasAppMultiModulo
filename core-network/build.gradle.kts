@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LibraryExtension
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -67,36 +68,22 @@ kotlin {
         }
     }
 }
-
-android {
-    namespace = "com.elvis.core.network"
+configure<LibraryExtension> {
+    namespace = "com.elvis.coreBaseDatos"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        // Nota: targetSdk no suele definirse en librerías, pero si lo necesitas:
+        // targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
-dependencies {
-    debugImplementation(compose.uiTooling)
-}
-
-compose.desktop {
+/*compose.desktop {
     application {
 
         nativeDistributions {
@@ -105,4 +92,4 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
-}
+}*/

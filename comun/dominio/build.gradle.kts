@@ -51,7 +51,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
     packaging {
         resources {
@@ -69,11 +68,7 @@ android {
     }
 }
 
-dependencies {
-    debugImplementation(compose.uiTooling)
-}
-
-compose.desktop {
+/*compose.desktop {
     application {
 
         nativeDistributions {
@@ -82,4 +77,4 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
-}
+}*/

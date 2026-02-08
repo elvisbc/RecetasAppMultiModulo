@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LibraryExtension
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -72,36 +73,35 @@ sqldelight {
         }
     }
 }
-
 android {
-    namespace = "com.elvis.corebaseDatos"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    namespace = "com.elvis.androidApp"
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        minSdk = 24
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
-dependencies {
-    debugImplementation(compose.uiTooling)
-}
-
-compose.desktop {
+/*compose.desktop {
     application {
 
         nativeDistributions {
@@ -110,4 +110,4 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
-}
+}*/

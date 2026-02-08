@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LibraryExtension
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -55,36 +56,14 @@ kotlin {
         }
     }
 }
-
 android {
     namespace = "com.elvis.coreNavegacion"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
+    compileSdk = 35
     defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        minSdk = 24
     }
 }
-
-dependencies {
-    debugImplementation(compose.uiTooling)
-}
-
-compose.desktop {
+/*compose.desktop {
     application {
 
         nativeDistributions {
@@ -93,4 +72,4 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
-}
+}*/

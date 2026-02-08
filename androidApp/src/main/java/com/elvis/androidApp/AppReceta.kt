@@ -1,4 +1,4 @@
-package com.elvis.recetaskmpmulti
+package com.elvis.androidApp
 
 import android.app.Application
 import com.elvis.recetaskmpmulti.di.initKoin
